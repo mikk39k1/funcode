@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Hearthside Terminal - Quest Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#2f4026",
+                        "inverse-surface": "#fff7fd",
+                        "on-tertiary-container": "#4b386e",
+                        "error-container": "#85230a",
+                        "surface-container-highest": "#29242b",
+                        "background": "#100d11",
+                        "primary-fixed-dim": "#ca9a6b",
+                        "surface-container-lowest": "#000000",
+                        "error-dim": "#c44f34",
+                        "on-tertiary-fixed-variant": "#544178",
+                        "tertiary-fixed-dim": "#c8b1f0",
+                        "on-surface-variant": "#b0a8b2",
+                        "on-tertiary": "#544178",
+                        "on-error-container": "#ff9b82",
+                        "secondary": "#b8cdaa",
+                        "on-secondary-fixed": "#33442a",
+                        "on-primary": "#5b3912",
+                        "surface-dim": "#100d11",
+                        "on-surface": "#ece3ed",
+                        "surface-bright": "#2f2a32",
+                        "surface": "#100d11",
+                        "inverse-primary": "#7e572e",
+                        "secondary-dim": "#aabf9c",
+                        "surface-container-low": "#151217",
+                        "surface-variant": "#29242b",
+                        "tertiary-dim": "#c8b1f0",
+                        "on-secondary-container": "#b1c6a3",
+                        "primary-container": "#704a22",
+                        "tertiary-fixed": "#d6beff",
+                        "outline": "#7a737c",
+                        "inverse-on-surface": "#585458",
+                        "on-tertiary-fixed": "#362459",
+                        "primary": "#f0bd8b",
+                        "secondary-fixed": "#d4e9c4",
+                        "on-background": "#ece3ed",
+                        "surface-tint": "#f0bd8b",
+                        "on-primary-fixed": "#271300",
+                        "tertiary-container": "#d6beff",
+                        "on-error": "#450900",
+                        "outline-variant": "#4b464e",
+                        "surface-container": "#1c181e",
+                        "primary-fixed": "#d9a777",
+                        "error": "#f97758",
+                        "secondary-fixed-dim": "#c6dbb7",
+                        "on-primary-container": "#ffddbf",
+                        "surface-container-high": "#221e24",
+                        "primary-dim": "#d9a777",
+                        "on-secondary-fixed-variant": "#4e6144",
+                        "on-secondary": "#34452b",
+                        "on-primary-fixed-variant": "#53320b",
+                        "tertiary": "#e1cfff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #100d11; color: #ece3ed; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(28, 24, 30, 0.7); backdrop-filter: blur(12px); }
+        .gradient-btn { background: linear-gradient(135deg, #f0bd8b, #704a22); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-screen w-64 rounded-r-[2rem] sticky left-0 top-0 bg-[#151217] text-[#f0bd8b] font-['Plus_Jakarta_Sans'] font-medium text-sm p-4 gap-2 shadow-[40px_0_60px_-5px_rgba(0,0,0,0.12)] z-50">
+<div class="flex items-center gap-3 px-4 py-4 mb-6">
+<img alt="User avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary" data-alt="Close up portrait of a young woman with warm lighting and soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBdcOkojAC9XEZBprL5KxNMpFnLjBSB_xmQDWc-LcbyWJe7nE3Kmzt_7NL2vsy0kXarYCNH28vMfiC-VLwQhtZeVNVX505hGWj3f2GPKb3sx8X_aLuVRXy5xWAgMqCvOKS3iLMcyn0jrmfxjVG51Vqf14345LU5ROJkTQierOEzA_tzSDXgTwQMM2kazr625HWMvlMr2i8o5o0UiOVLsu_3E8KqV9E36a5iev_rMs72rOv6OID0K87z8ctjcQba6wtiXpQpzFN0WQ"/>
+<div>
+<div class="text-[#f0bd8b] font-bold">Master Coder</div>
+<div class="text-on-surface-variant text-xs">Level 42 Mage</div>
+</div>
+</div>
+<button class="gradient-btn text-on-primary-fixed w-full py-3 rounded-full font-bold mb-6 hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            New Expedition
+        </button>
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 text-[#ece3ed]/70 px-4 py-3 rounded-full hover:bg-[#1c181e]/50 hover:text-[#f0bd8b] transition-all hover:translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="castle">castle</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 bg-[#1c181e] text-[#f0bd8b] rounded-full px-4 py-3 shadow-inner" href="#">
+<span class="material-symbols-outlined" data-icon="swords" style="font-variation-settings: 'FILL' 1;">swords</span>
+<span>Quests</span>
+</a>
+<a class="flex items-center gap-3 text-[#ece3ed]/70 px-4 py-3 rounded-full hover:bg-[#1c181e]/50 hover:text-[#f0bd8b] transition-all hover:translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span>Skill Tree</span>
+</a>
+<a class="flex items-center gap-3 text-[#ece3ed]/70 px-4 py-3 rounded-full hover:bg-[#1c181e]/50 hover:text-[#f0bd8b] transition-all hover:translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span>Terminal</span>
+</a>
+<a class="flex items-center gap-3 text-[#ece3ed]/70 px-4 py-3 rounded-full hover:bg-[#1c181e]/50 hover:text-[#f0bd8b] transition-all hover:translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Guild</span>
+</a>
+</div>
+<div class="flex flex-col gap-2 mt-auto border-t border-surface-variant pt-4">
+<a class="flex items-center gap-3 text-[#ece3ed]/70 px-4 py-3 rounded-full hover:bg-[#1c181e]/50 hover:text-[#f0bd8b] transition-all hover:translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 text-[#ece3ed]/70 px-4 py-3 rounded-full hover:bg-[#1c181e]/50 hover:text-[#f0bd8b] transition-all hover:translate-x-1 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- TopAppBar (Mobile & Global Header Elements) -->
+<header class="flex justify-between items-center w-full px-6 h-16 bg-[#100d11] text-[#f0bd8b] font-['Plus_Jakarta_Sans'] tracking-tight shadow-[0_40px_60px_-5px_rgba(0,0,0,0.12)] sticky top-0 z-40 md:hidden">
+<div class="text-2xl font-bold text-[#f0bd8b] tracking-tighter">The Hearthside Terminal</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="Adventurer profile" class="w-8 h-8 rounded-full object-cover" data-alt="Close up portrait of a young woman with warm lighting and soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWliRWW7D6Bfd1HtKkJJJgaIqejV0I5Ua037M5rii3STDZbajvwoAPrkqf6tRc1TlYH4LE3r25U3DkCNSoP-HZRuw7YrQfLOXXGtpBp-L_SPHeKT-YiRUqLxUQtTqDY5Dlblj_AvHAa3t7bYKCCG9upvvTeKsPJisBTPIvSr0BDEfGxAmBKX7gZpbtMFJSy_7Pf4SbLrAX9em7iazfs6hsaua9-lA48tIQ7Tq7g8UJ7DTJjxUqSIx63UqDeN2LKioJClcmE2tfRbs"/>
+</div>
+</header>
+<div class="p-6 md:p-10 max-w-7xl mx-auto w-full flex flex-col gap-8">
+<!-- Welcome Header -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-2">Available Quests</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl leading-relaxed">The glowing embers reveal new paths. Choose your challenge for the day.</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center gap-4 border border-outline-variant/20 shadow-[0_20px_40px_-5px_rgba(0,0,0,0.12)]">
+<div class="bg-secondary/20 p-3 rounded-full">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div>
+<div class="text-sm font-medium text-on-surface-variant uppercase tracking-wider">Current Streak</div>
+<div class="text-2xl font-bold text-secondary">3 Weeks</div>
+</div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="flex flex-wrap gap-3">
+<button class="bg-surface-container-high text-primary px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-surface-variant transition-colors border-b-2 border-primary">All Quests</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Coffee Break - 30m</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Deep Focus - 2h</button>
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full text-sm font-medium hover:bg-surface-container-high transition-colors">Boss Fights - 4h+</button>
+</section>
+<!-- Quests Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Quest Card 1 -->
+<div class="bg-surface-container-low rounded-xl p-8 flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-10 -mt-10 blur-2xl group-hover:bg-primary/10 transition-colors duration-500"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex gap-3">
+<span class="bg-tertiary-container/20 text-tertiary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">TypeScript</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium">1h Est.</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-bold bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm">stars</span>
+<span>+250 XP</span>
+</div>
+</div>
+<div class="z-10">
+<h2 class="text-2xl font-bold text-on-surface mb-2">The Legacy Form Refactor</h2>
+<p class="text-on-surface-variant leading-relaxed">The ancient validation scrolls have grown fragile and convoluted. Delve into the legacy user forms and rewrite them using the modern Zod enchantments to restore stability to the kingdom.</p>
+</div>
+<div class="mt-auto z-10">
+<div class="bg-surface-container-lowest rounded-md p-4 flex justify-between items-center group/code">
+<code class="font-mono text-sm text-tertiary">funcode fetch quest-123</code>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover/code:opacity-100">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Quest Card 2 -->
+<div class="bg-surface-container-low rounded-xl p-8 flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -mr-10 -mt-10 blur-2xl group-hover:bg-secondary/10 transition-colors duration-500"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex gap-3">
+<span class="bg-secondary-container/30 text-secondary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">React</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-xs font-medium">45m Est.</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-bold bg-primary/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm">stars</span>
+<span>+150 XP</span>
+</div>
+</div>
+<div class="z-10">
+<h2 class="text-2xl font-bold text-on-surface mb-2">Memory Leak Mystery</h2>
+<p class="text-on-surface-variant leading-relaxed">A dark energy is draining the performance of the Dashboard realm. Equip your profiler tools, track down the rogue useEffect hooks, and banish the memory leaks.</p>
+</div>
+<div class="mt-auto z-10">
+<div class="bg-surface-container-lowest rounded-md p-4 flex justify-between items-center group/code">
+<code class="font-mono text-sm text-secondary">funcode fetch quest-124</code>
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover/code:opacity-100">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

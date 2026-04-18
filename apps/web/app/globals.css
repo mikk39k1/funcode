@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Tailwind v4 theme — "The Hearthside Terminal" design system
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Fonts — variables injected by next/font/google in layout.tsx */
+  --font-sans: var(--font-plus-jakarta-sans), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Border radius scale — "none" (0px) is intentionally omitted / prohibited */
+  --radius-sm: 0.5rem;    /* inner nested elements */
+  --radius: 1rem;         /* buttons, small cards */
+  --radius-md: 1.5rem;    /* standard cards */
+  --radius-lg: 2rem;      /* large containers */
+  --radius-xl: 3rem;      /* hero sections */
+  --radius-full: 9999px;  /* pill buttons, tags */
+
+  /* -------------------------------------------------------------------------
+     Color tokens — Material-style warm-dark palette
+     Surface hierarchy (darkest → lightest):
+       surface < surface-container-low < surface-container < surface-container-high < surface-container-highest
+     -------------------------------------------------------------------------- */
+
+  /* Base surfaces */
+  --color-surface:                    #100d11;
+  --color-surface-dim:                #100d11;
+  --color-surface-bright:             #2f2a32;
+  --color-surface-container-lowest:   #000000;
+  --color-surface-container-low:      #151217;
+  --color-surface-container:          #1c181e;
+  --color-surface-container-high:     #221e24;
+  --color-surface-container-highest:  #29242b;
+  --color-surface-variant:            #29242b;
+  --color-background:                 #100d11;
+  --color-inverse-surface:            #fff7fd;
+
+  /* On-surface */
+  --color-on-surface:                 #ece3ed;
+  --color-on-surface-variant:         #b0a8b2;
+  --color-on-background:              #ece3ed;
+  --color-inverse-on-surface:         #585458;
+
+  /* Primary — Amber / Hearth fire */
+  --color-primary:                    #f0bd8b;
+  --color-primary-dim:                #d9a777;
+  --color-primary-fixed:              #d9a777;
+  --color-primary-fixed-dim:          #ca9a6b;
+  --color-primary-container:          #704a22;
+  --color-on-primary:                 #5b3912;
+  --color-on-primary-fixed:           #271300;
+  --color-on-primary-fixed-variant:   #53320b;
+  --color-on-primary-container:       #ffddbf;
+  --color-inverse-primary:            #7e572e;
+  --color-surface-tint:               #f0bd8b;
+
+  /* Secondary — Muted Forest Green */
+  --color-secondary:                  #b8cdaa;
+  --color-secondary-dim:              #aabf9c;
+  --color-secondary-fixed:            #d4e9c4;
+  --color-secondary-fixed-dim:        #c6dbb7;
+  --color-secondary-container:        #2f4026;
+  --color-on-secondary:               #34452b;
+  --color-on-secondary-fixed:         #33442a;
+  --color-on-secondary-fixed-variant: #4e6144;
+  --color-on-secondary-container:     #b1c6a3;
+
+  /* Tertiary — Soft Lavender */
+  --color-tertiary:                   #e1cfff;
+  --color-tertiary-dim:               #c8b1f0;
+  --color-tertiary-fixed:             #d6beff;
+  --color-tertiary-fixed-dim:         #c8b1f0;
+  --color-tertiary-container:         #d6beff;
+  --color-on-tertiary:                #544178;
+  --color-on-tertiary-fixed:          #362459;
+  --color-on-tertiary-fixed-variant:  #544178;
+  --color-on-tertiary-container:      #4b386e;
+
+  /* Error — Soft coral-terracotta (no harsh reds) */
+  --color-error:                      #f97758;
+  --color-error-dim:                  #c44f34;
+  --color-error-container:            #85230a;
+  --color-on-error:                   #450900;
+  --color-on-error-container:         #ff9b82;
+
+  /* Outline */
+  --color-outline:                    #7a737c;
+  --color-outline-variant:            #4b464e;
+}
+
+/* ---------------------------------------------------------------------------
+   Base styles
+   --------------------------------------------------------------------------- */
+@layer base {
+  html {
+    font-family: var(--font-plus-jakarta-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+  }
+
+  /* Monospaced text for technical data */
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utility classes derived from the design system
+   --------------------------------------------------------------------------- */
+@layer utilities {
+  /* Gradient CTA button fill */
+  .gradient-cta {
+    background: linear-gradient(135deg, #f0bd8b, #704a22);
+  }
+
+  /* Glassmorphism panel — for modals / popovers */
+  .glass-panel {
+    background: rgba(28, 24, 30, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Ambient shadow — soft lamp-light feel */
+  .shadow-ambient {
+    box-shadow: 0 40px 60px -5px rgba(0, 0, 0, 0.12);
+  }
+
+  .shadow-ambient-sm {
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.12);
+  }
+}

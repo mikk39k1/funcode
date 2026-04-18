@@ -1,0 +1,14 @@
+[
+  {
+    "description": "Example: basic case",
+    "input": "hello",
+    "expectedOutput": "HELLO",
+    "points": 10
+  },
+  {
+    "description": "Example: empty string",
+    "input": "",
+    "expectedOutput": "",
+    "points": 5
+  }
+]

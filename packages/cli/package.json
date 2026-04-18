@@ -1,0 +1,27 @@
+{
+  "name": "@funcode/cli",
+  "version": "0.1.0",
+  "description": "FunCode CLI – fetch and submit coding quests without AI",
+  "bin": {
+    "funcode": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^12",
+    "inquirer": "^10",
+    "chalk": "^5",
+    "ora": "^8",
+    "adm-zip": "^0.5",
+    "open": "^10"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5",
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

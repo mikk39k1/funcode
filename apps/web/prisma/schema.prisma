@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum Difficulty {
+  COZY
+  STANDARD
+  CHALLENGING
+}
+
+enum QuestStatus {
+  IN_PROGRESS
+  SUBMITTED
+  COMPLETED
+}
+
+// ---------------------------------------------------------------------------
+// Models
+// ---------------------------------------------------------------------------
+
+model User {
+  id           String   @id @default(cuid())
+  /// Matches the Supabase Auth user id
+  authId       String   @unique
+  username     String   @unique
+  email        String   @unique
+  totalXp      Int      @default(0)
+  streakCount  Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  userQuests UserQuest[]
+  userSkills UserSkill[]
+
+  @@map("users")
+}
+
+model Skill {
+  id            String  @id @default(cuid())
+  name          String
+  description   String?
+  /// Emoji or icon identifier shown on the skill tree
+  icon          String?
+  /// Self-referential relation for skill tree hierarchy
+  parentSkillId String?
+  parent        Skill?  @relation("SkillTree", fields: [parentSkillId], references: [id])
+  children      Skill[] @relation("SkillTree")
+
+  quests     Quest[]
+  userSkills UserSkill[]
+
+  @@map("skills")
+}
+
+model Quest {
+  id               String     @id @default(cuid())
+  title            String
+  /// Cozy narrative / lore for the quest README
+  lore             String
+  category         String
+  skillId          String?
+  skill            Skill?     @relation(fields: [skillId], references: [id])
+  xpReward         Int        @default(100)
+  difficulty       Difficulty @default(STANDARD)
+  /// Supabase Storage path to the quest template .zip
+  templateUrl      String?
+  estimatedMinutes Int        @default(60)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  userQuests UserQuest[]
+
+  @@map("quests")
+}
+
+model UserQuest {
+  id               String      @id @default(cuid())
+  userId           String
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questId          String
+  quest            Quest       @relation(fields: [questId], references: [id], onDelete: Cascade)
+  status           QuestStatus @default(IN_PROGRESS)
+  startedAt        DateTime    @default(now())
+  completedAt      DateTime?
+  /// Supabase Storage path to the submitted src/ bundle .zip
+  submittedCodeUrl String?
+
+  postQuestReport PostQuestReport?
+
+  @@unique([userId, questId])
+  @@map("user_quests")
+}
+
+model PostQuestReport {
+  id                 String    @id @default(cuid())
+  userQuestId        String    @unique
+  userQuest          UserQuest @relation(fields: [userQuestId], references: [id], onDelete: Cascade)
+  complexityAnalysis String?
+  refactoringTips    String?
+  edgeCaseAnalysis   String?
+  /// Apprentice | Craftsman | Artisan | Master
+  mentorGrade        String?
+  /// Raw structured JSON from the LLM for future display flexibility
+  fullReportJson     Json?
+  createdAt          DateTime  @default(now())
+
+  @@map("post_quest_reports")
+}
+
+model UserSkill {
+  id      String @id @default(cuid())
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skillId String
+  skill   Skill  @relation(fields: [skillId], references: [id], onDelete: Cascade)
+  xp      Int    @default(0)
+  level   Int    @default(1)
+
+  @@unique([userId, skillId])
+  @@map("user_skills")
+}
