@@ -122,7 +122,7 @@ export default async function DashboardPage({
         )}
 
         {quests.map((quest) => (
-          <Link key={quest.id} href={`/dashboard/quests/${quest.id}`}>
+          <Link key={quest.id} href={`/quests/${quest.id}`}>
             <Card variant="default" glow="primary" className="h-full cursor-pointer hover:bg-surface-container transition-colors duration-200">
               {/* Meta row */}
               <div className="flex justify-between items-start mb-6">

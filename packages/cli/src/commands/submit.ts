@@ -21,8 +21,9 @@ export async function submitCommand(): Promise<void> {
   }
 
   // Derive quest id from the directory name (quest-{id}-{slug})
+  // The id itself contains a dash (e.g. "quest-001"), so capture two segments.
   const dirName = path.basename(cwd);
-  const match = dirName.match(/^quest-([^-]+)/);
+  const match = dirName.match(/^quest-([a-z]+-\d+)/);
   if (!match) {
     ui.error_msg(
       `Could not parse quest id from directory name "${dirName}".`

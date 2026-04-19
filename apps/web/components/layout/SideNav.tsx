@@ -12,6 +12,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { href: "/dashboard", label: "Home", icon: "castle" },
   { href: "/quests", label: "Quests", icon: "swords" },
+  { href: "/progress", label: "Progress", icon: "bar_chart" },
   { href: "/skill-tree", label: "Skill Tree", icon: "account_tree" },
   { href: "/terminal", label: "Terminal", icon: "terminal" },
   { href: "/guild", label: "Guild", icon: "group" },
